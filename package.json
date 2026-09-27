@@ -1,0 +1,17 @@
+{
+  "name": "starpay",
+  "version": "1.0.0",
+  "description": "StarPay Capacitor App",
+  "main": "index.js",
+  "scripts": {
+    "build": "mkdir -p www && cp ../starpay/starpay.html www/index.html || true",
+    "sync": "npm run build && node node_modules/@capacitor/cli/bin/capacitor sync"
+  },
+  "dependencies": {
+    "@capacitor/android": "^6.1.2",
+    "@capacitor/cli": "^6.1.2",
+    "@capacitor/core": "^6.1.2"
+  },
+  "author": "",
+  "license": "ISC"
+}
