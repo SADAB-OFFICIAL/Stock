@@ -2050,7 +2050,7 @@
 
     <!-- NEW USDT DEPOSIT PAGE FROM DEPOSIT.HTML (BINANCE THEME) -->
     <section id="deposit-page" class="page-section min-h-screen bg-[#F8F9FA]">
-        <div class="w-full max-w-[400px] mx-auto bg-white min-h-screen relative shadow-[0_0_20px_rgba(0,0,0,0.5)] overflow-x-hidden flex flex-col">
+        <div class="w-full bg-white min-h-screen relative overflow-x-hidden flex flex-col">
 
             <!-- App Header "USDT Deposit" -->
             <div class="bg-white text-slate-800 px-4 py-4 flex justify-between items-center z-20 relative border-b border-slate-200">
@@ -2130,7 +2130,7 @@
 
     <!-- NEW USDT DEPOSIT CONFIRM PAGE (BINANCE THEME) -->
     <section id="deposit-confirm-page" class="page-section min-h-screen bg-[#F8F9FA]">
-        <div class="w-full max-w-[400px] mx-auto bg-white min-h-screen relative shadow-[0_0_20px_rgba(0,0,0,0.5)] overflow-x-hidden flex flex-col">
+        <div class="w-full bg-white min-h-screen relative overflow-x-hidden flex flex-col">
 
             <!-- App Header "USDT Deposit" -->
             <div class="bg-white text-slate-800 px-4 py-4 flex justify-between items-center z-20 relative border-b border-slate-200">
@@ -4966,7 +4966,7 @@
     }
     
     function showSellToast() {
-        showPremiumToast('Please deposit and buy USDT first!');
+        showModal('Deposit Required', 'Please deposit and buy USDT first! Click on the Deposit button to proceed.', 'fa-exclamation-circle text-amber-500');
     }
 
 </script>
