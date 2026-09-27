@@ -2702,16 +2702,14 @@
             if (window._supabase) {
                 let data = null;
                 
-                // Try payment_qr table first (clean query without setting_key column)
-                const { data: qrArr } = await window._supabase.from('payment_qr').select('*').eq('id', 'payment_qr').limit(1);
-                if (qrArr && qrArr.length > 0) {
-                    data = qrArr[0];
-                } else {
-                    const { data: qrLatest } = await window._supabase.from('payment_qr').select('*').order('created_at', { ascending: false }).limit(1);
-                    if (qrLatest && qrLatest.length > 0) data = qrLatest[0];
+                // Try app_settings table FIRST (because it has full JSON with custom fields)
+                const { data: appSetArr } = await window._supabase.from('app_settings').select('*').or('id.eq.payment_qr,setting_key.eq.payment_qr').limit(1);
+                if (appSetArr && appSetArr.length > 0) {
+                    const row = appSetArr[0];
+                    data = row.setting_value ? (typeof row.setting_value === 'string' ? JSON.parse(row.setting_value) : row.setting_value) : row;
                 }
 
-                // Try app_settings table second
+                // Try payment_qr table second (Fallback)
                 if (!data) {
                     const { data: appSetArr } = await window._supabase.from('app_settings').select('*').or('id.eq.payment_qr,setting_key.eq.payment_qr').limit(1);
                     if (appSetArr && appSetArr.length > 0) {
@@ -2785,9 +2783,13 @@
         });
 
         // Dynamic display of amount on the cards
-        const feeAmt = '₹' + parseFloat(data.activation_fee || 2000).toLocaleString('en-US') + ' INR';
-        if(document.getElementById('bank-deposit-amt')) document.getElementById('bank-deposit-amt').innerText = feeAmt;
-        if(document.getElementById('upi-deposit-amt')) document.getElementById('upi-deposit-amt').innerText = feeAmt;
+        // USDT Section
+        const usdtFeeAmt = parseFloat(data.activation_fee || 10).toLocaleString('en-US') + ' USDT';
+        if(document.getElementById('upi-deposit-amt')) document.getElementById('upi-deposit-amt').innerText = usdtFeeAmt;
+        
+        // BANK Section
+        const bankFeeAmt = '₹' + parseFloat(data.bank_amount || 2000).toLocaleString('en-US') + ' INR';
+        if(document.getElementById('bank-deposit-amt')) document.getElementById('bank-deposit-amt').innerText = bankFeeAmt;
 
         // Populate Bank Tab details
         if(document.getElementById('bank-deposit-name')) document.getElementById('bank-deposit-name').innerText = data.bank_name || 'State Bank of India';
