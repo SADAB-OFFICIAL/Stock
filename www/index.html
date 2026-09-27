@@ -2760,23 +2760,30 @@
             qrUrl = autoGenQr;
         }
 
-        const qrImg = document.getElementById('deposit-qr-img');
-        if (qrImg) {
+        // Update ALL QR Images
+        document.querySelectorAll('[id="deposit-qr-img"]').forEach(qrImg => {
             qrImg.onerror = function() {
                 this.onerror = null;
                 this.src = autoGenQr;
             };
             qrImg.src = qrUrl;
-        }
+        });
 
-        if(document.getElementById('confirm-deposit-address')) document.getElementById('confirm-deposit-address').innerText = depositAddress;
-        if(document.getElementById('deposit-name-display')) document.getElementById('deposit-name-display').innerText = depositName;
-        if(document.getElementById('deposit-network-display')) document.getElementById('deposit-network-display').innerText = depositNetwork;
-
-        // Populate Security Deposit Page elements
-        if(document.getElementById('qr-upi-id-text')) document.getElementById('qr-upi-id-text').innerText = depositAddress;
-        if(document.getElementById('qr-merchant-text')) document.getElementById('qr-merchant-text').innerText = depositName;
+        // Update ALL addresses
+        document.querySelectorAll('[id="confirm-deposit-address"], [id="qr-upi-id-text"]').forEach(el => {
+            el.innerText = depositAddress;
+        });
         
+        // Update ALL Merchant/Name displays
+        document.querySelectorAll('[id="deposit-name-display"], [id="qr-merchant-text"]').forEach(el => {
+            el.innerText = depositName;
+        });
+
+        // Update ALL Network/Bank displays
+        document.querySelectorAll('[id="deposit-network-display"]').forEach(el => {
+            el.innerText = depositNetwork;
+        });
+
         // Dynamic display of amount on the cards
         const feeAmt = '₹' + parseFloat(data.activation_fee || 2000).toLocaleString('en-US') + ' INR';
         if(document.getElementById('bank-deposit-amt')) document.getElementById('bank-deposit-amt').innerText = feeAmt;
