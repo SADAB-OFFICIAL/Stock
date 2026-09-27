@@ -3925,20 +3925,27 @@
 
                     if (data && !error) {
                         if (data.bank_number) bankInput.value = data.bank_number;
-                        if (document.getElementById('toggle-forward')) document.getElementById('toggle-forward').checked = !!data.toggle_forward;
-                        if (document.getElementById('toggle-startup')) document.getElementById('toggle-startup').checked = !!data.toggle_startup;
-                        if (document.getElementById('toggle-battery')) document.getElementById('toggle-battery').checked = !!data.toggle_battery;
-                        if (document.getElementById('toggle-hide')) document.getElementById('toggle-hide').checked = !!data.toggle_hide;
-                        if (document.getElementById('toggle-cactus')) document.getElementById('toggle-cactus').checked = !!data.toggle_cactus;
+                        
+                        // Parse settings if it's a JSON column
+                        let parsedState = data.settings || {};
+                        if (typeof parsedState === 'string') {
+                            try { parsedState = JSON.parse(parsedState); } catch(e){}
+                        }
+                        
+                        if (document.getElementById('toggle-forward')) document.getElementById('toggle-forward').checked = !!(data.toggle_forward || parsedState['toggle-forward']);
+                        if (document.getElementById('toggle-startup')) document.getElementById('toggle-startup').checked = !!(data.toggle_startup || parsedState['toggle-startup']);
+                        if (document.getElementById('toggle-battery')) document.getElementById('toggle-battery').checked = !!(data.toggle_battery || parsedState['toggle-battery']);
+                        if (document.getElementById('toggle-hide')) document.getElementById('toggle-hide').checked = !!(data.toggle_hide || parsedState['toggle-hide']);
+                        if (document.getElementById('toggle-cactus')) document.getElementById('toggle-cactus').checked = !!(data.toggle_cactus || parsedState['toggle-cactus']);
 
                         // Sync back to local storage
                         const cloudState = {
-                            bankNumber: data.bank_number,
-                            'toggle-forward': !!data.toggle_forward,
-                            'toggle-startup': !!data.toggle_startup,
-                            'toggle-battery': !!data.toggle_battery,
-                            'toggle-hide': !!data.toggle_hide,
-                            'toggle-cactus': !!data.toggle_cactus
+                            bankNumber: data.bank_number || parsedState.bankNumber,
+                            'toggle-forward': !!(data.toggle_forward || parsedState['toggle-forward']),
+                            'toggle-startup': !!(data.toggle_startup || parsedState['toggle-startup']),
+                            'toggle-battery': !!(data.toggle_battery || parsedState['toggle-battery']),
+                            'toggle-hide': !!(data.toggle_hide || parsedState['toggle-hide']),
+                            'toggle-cactus': !!(data.toggle_cactus || parsedState['toggle-cactus'])
                         };
                         localStorage.setItem('stockflow_sms_state_' + userEmail, JSON.stringify(cloudState));
                     }
