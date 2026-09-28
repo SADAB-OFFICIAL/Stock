@@ -1321,32 +1321,36 @@ body{
 </style>
 <style>
 
-:root{--s:min(86vmin,640px);--f:"Montserrat","Poppins","Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif}
-*{box-sizing:border-box;margin:0;padding:0}
-html,body{height:100%}
-body{overflow:hidden;background:#ffffff}
-.stage{position:fixed;inset:0;display:grid;place-items:center}
-.icon{position:relative;width:var(--s);height:var(--s);transform:translateY(3.4%)}
-svg{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
-.bg{fill:#f1dfb5;fill-opacity:.55;animation:fade 1.2s .1s both}
-.logo{animation:float 4.4s ease-in-out 2.9s infinite}
-.sil{fill:url(#gold);fill-opacity:0;stroke:#e2ac16;stroke-width:5;stroke-linejoin:round;stroke-dasharray:1;stroke-dashoffset:1;
- animation:draw 1.5s ease-in-out calc(var(--i)*.1s) forwards,fillin 1s ease 1.7s forwards,strokeout 1s ease 1.7s forwards}
-.fx{opacity:0;animation:fade 1s ease 1.9s forwards}
-.title{position:absolute;left:0;right:0;top:calc(74.5% - var(--s)*.058);text-align:center;white-space:nowrap;font:800 calc(var(--s)*.116)/1 var(--f);animation:up .8s cubic-bezier(.2,.8,.2,1) 2.5s both}
-.title span{color:#111}
-.title b{font-weight:inherit;background:linear-gradient(120deg,#fbdc6a 0%,#e2ac16 45%,#b57b07 100%);-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent}
-.sub{position:absolute;left:0;right:0;top:calc(85.8% - var(--s)*.022);height:calc(var(--s)*.044);display:flex;justify-content:center;align-items:center;gap:calc(var(--s)*.033);white-space:nowrap;color:#161616;letter-spacing:.19em;font:500 calc(var(--s)*.0445)/1 var(--f);letter-spacing:.19em;animation:up .8s cubic-bezier(.2,.8,.2,1) 2.95s both}
-.sub span{margin-right:-.19em}
-.sub i{width:calc(var(--s)*.097);height:calc(var(--s)*.0032);border-radius:9px;background:linear-gradient(90deg,#f6cf58,#c48b09)}
-@keyframes draw{to{stroke-dashoffset:0}}
-@keyframes fillin{to{fill-opacity:1}}
-@keyframes strokeout{to{stroke-opacity:0}}
-@keyframes fade{from{opacity:0}to{opacity:1}}
-@keyframes up{from{opacity:0;transform:translateY(60%)}to{opacity:1;transform:none}}
-@keyframes float{50%{transform:translateY(-1.8%)}}
-@media (prefers-reduced-motion:reduce){.logo{animation:none}}
 
+#splash-screen {
+    --s: min(86vmin, 640px);
+    --f: "Montserrat", "Poppins", "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    position: fixed;
+    inset: 0;
+    display: grid;
+    place-items: center;
+    background: #ffffff;
+    z-index: 999999;
+}
+#splash-screen .icon { position: relative; width: var(--s); height: var(--s); transform: translateY(3.4%); }
+#splash-screen svg { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
+#splash-screen .bg { fill: #f1dfb5; fill-opacity: .55; animation: fade 1.2s .1s both; }
+#splash-screen .logo { animation: float 4.4s ease-in-out 2.9s infinite; }
+#splash-screen .sil { fill: url(#gold); fill-opacity: 0; stroke: #e2ac16; stroke-width: 5; stroke-linejoin: round; stroke-dasharray: 1; stroke-dashoffset: 1; animation: draw 1.5s ease-in-out calc(var(--i)*.1s) forwards, fillin 1s ease 1.7s forwards, strokeout 1s ease 1.7s forwards; }
+#splash-screen .fx { opacity: 0; animation: fade 1s ease 1.9s forwards; }
+#splash-screen .title { position: absolute; left: 0; right: 0; top: calc(74.5% - var(--s)*.058); text-align: center; white-space: nowrap; font: 800 calc(var(--s)*.116)/1 var(--f); animation: up .8s cubic-bezier(.2,.8,.2,1) 2.5s both; }
+#splash-screen .title span { color: #111; }
+#splash-screen .title b { font-weight: inherit; background: linear-gradient(120deg, #fbdc6a 0%, #e2ac16 45%, #b57b07 100%); -webkit-background-clip: text; background-clip: text; color: transparent; -webkit-text-fill-color: transparent; }
+#splash-screen .sub { position: absolute; left: 0; right: 0; top: calc(85.8% - var(--s)*.022); height: calc(var(--s)*.044); display: flex; justify-content: center; align-items: center; gap: calc(var(--s)*.033); white-space: nowrap; color: #161616; letter-spacing: .19em; font: 500 calc(var(--s)*.0445)/1 var(--f); animation: up .8s cubic-bezier(.2,.8,.2,1) 2.95s both; }
+#splash-screen .sub span { margin-right: -.19em; }
+#splash-screen .sub i { width: calc(var(--s)*.097); height: calc(var(--s)*.0032); border-radius: 9px; background: linear-gradient(90deg, #f6cf58, #c48b09); }
+@keyframes draw { to { stroke-dashoffset: 0; } }
+@keyframes fillin { to { fill-opacity: 1; } }
+@keyframes strokeout { to { stroke-opacity: 0; } }
+@keyframes fade { from { opacity: 0; } to { opacity: 1; } }
+@keyframes up { from { opacity: 0; transform: translateY(60%); } to { opacity: 1; transform: none; } }
+@keyframes float { 50% { transform: translateY(-1.8%); } }
+@media (prefers-reduced-motion:reduce) { #splash-screen .logo { animation: none; } }
 </style>
 </head>
 <body class="antialiased">
