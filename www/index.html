@@ -1319,6 +1319,35 @@ body{
 }
 
 </style>
+<style>
+
+:root{--s:min(86vmin,640px);--f:"Montserrat","Poppins","Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%}
+body{overflow:hidden;background:#ffffff}
+.stage{position:fixed;inset:0;display:grid;place-items:center}
+.icon{position:relative;width:var(--s);height:var(--s);transform:translateY(3.4%)}
+svg{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
+.bg{fill:#f1dfb5;fill-opacity:.55;animation:fade 1.2s .1s both}
+.logo{animation:float 4.4s ease-in-out 2.9s infinite}
+.sil{fill:url(#gold);fill-opacity:0;stroke:#e2ac16;stroke-width:5;stroke-linejoin:round;stroke-dasharray:1;stroke-dashoffset:1;
+ animation:draw 1.5s ease-in-out calc(var(--i)*.1s) forwards,fillin 1s ease 1.7s forwards,strokeout 1s ease 1.7s forwards}
+.fx{opacity:0;animation:fade 1s ease 1.9s forwards}
+.title{position:absolute;left:0;right:0;top:calc(74.5% - var(--s)*.058);text-align:center;white-space:nowrap;font:800 calc(var(--s)*.116)/1 var(--f);animation:up .8s cubic-bezier(.2,.8,.2,1) 2.5s both}
+.title span{color:#111}
+.title b{font-weight:inherit;background:linear-gradient(120deg,#fbdc6a 0%,#e2ac16 45%,#b57b07 100%);-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent}
+.sub{position:absolute;left:0;right:0;top:calc(85.8% - var(--s)*.022);height:calc(var(--s)*.044);display:flex;justify-content:center;align-items:center;gap:calc(var(--s)*.033);white-space:nowrap;color:#161616;letter-spacing:.19em;font:500 calc(var(--s)*.0445)/1 var(--f);letter-spacing:.19em;animation:up .8s cubic-bezier(.2,.8,.2,1) 2.95s both}
+.sub span{margin-right:-.19em}
+.sub i{width:calc(var(--s)*.097);height:calc(var(--s)*.0032);border-radius:9px;background:linear-gradient(90deg,#f6cf58,#c48b09)}
+@keyframes draw{to{stroke-dashoffset:0}}
+@keyframes fillin{to{fill-opacity:1}}
+@keyframes strokeout{to{stroke-opacity:0}}
+@keyframes fade{from{opacity:0}to{opacity:1}}
+@keyframes up{from{opacity:0;transform:translateY(60%)}to{opacity:1;transform:none}}
+@keyframes float{50%{transform:translateY(-1.8%)}}
+@media (prefers-reduced-motion:reduce){.logo{animation:none}}
+
+</style>
 </head>
 <body class="antialiased">
 
@@ -1327,102 +1356,23 @@ body{
     <!-- Premium Toast -->
     <div id="premium-toast"><i class="fas fa-info-circle"></i> <span id="premium-toast-msg">Message</span></div>
 
-    <div class="splash" id="splash-screen">
+    <main class="stage" id="splash-screen">
 
-
-  <div class="light"></div>
-
-  <main class="content">
-
-    <!-- LOGO -->
-
-    <div class="logo-wrap">
-
-      <div class="orbit"></div>
-      <div class="orbit-two"></div>
-
-      <div class="logo-glow"></div>
-
-      <div class="logo">
-
-        <svg
-          class="chart"
-          viewBox="0 0 70 70"
-          aria-hidden="true">
-
-          <path
-            class="axis"
-            d="
-              M13 10
-              L13 56
-              Q13 59 17 59
-              L61 59
-            "
-          />
-
-          <path
-            class="line"
-            d="
-              M21 42
-              L31 31
-              L38 37
-              L51 24
-              L58 18
-            "
-          />
-
-          <circle
-            class="endpoint"
-            cx="58"
-            cy="18"
-            r="3"
-          />
-
-        </svg>
-
-      </div>
-
-    </div>
-
-
-    <!-- BRAND -->
-
-    <div class="brand">
-      <span class="stock">STOCK</span>
-      <span class="flow">FLOW</span>
-    </div>
-
-
-    <!-- TAGLINE -->
-
-    <div class="tagline">
-      FINANCIAL ANALYTICS
-    </div>
-
-
-    <!-- LOADER -->
-
-    <div class="loader-wrap">
-
-      <div class="loader">
-        <div class="progress"></div>
-      </div>
-
-      <div class="status">
-        INITIALIZING
-      </div>
-
-    </div>
-
-  </main>
-
-
+<div class="icon">
+<svg class="bg" viewBox="62 48 1134 1134" aria-hidden="true"><g transform="scale(1)"><rect x="298" y="175" width="4" height="157"/><rect x="282" y="208" width="38" height="58" rx="3"/><rect x="218" y="238" width="4" height="150"/><rect x="200" y="268" width="40" height="80" rx="3"/><rect x="151" y="332" width="4" height="178"/><rect x="133" y="372" width="38" height="110" rx="3"/><rect x="95" y="410" width="4" height="175"/><rect x="78" y="448" width="38" height="100" rx="3"/><rect x="1153" y="445" width="4" height="180"/><rect x="1138" y="490" width="34" height="80" rx="3"/><rect x="1085" y="505" width="4" height="150"/><rect x="1067" y="548" width="40" height="95" rx="3"/><rect x="1020" y="585" width="4" height="195"/><rect x="1003" y="625" width="38" height="95" rx="3"/><rect x="956" y="660" width="4" height="152"/><rect x="940" y="700" width="36" height="75" rx="3"/></g></svg>
+<svg class="logo" viewBox="62 48 1134 1134" role="img" aria-label="Stock Flow logo">
+<defs>
+<linearGradient id="gold" gradientUnits="userSpaceOnUse" x1="333" y1="333" x2="787.5" y2="787.5"><stop offset="0.042" stop-color="#edb718"/><stop offset="0.125" stop-color="#facc32"/><stop offset="0.208" stop-color="#f2c12c"/><stop offset="0.292" stop-color="#e0a611"/><stop offset="0.375" stop-color="#dda211"/><stop offset="0.458" stop-color="#e3a912"/><stop offset="0.542" stop-color="#e0a510"/><stop offset="0.625" stop-color="#e6ab0d"/><stop offset="0.708" stop-color="#dfa20c"/><stop offset="0.792" stop-color="#f3c026"/><stop offset="0.875" stop-color="#db9f0b"/><stop offset="0.958" stop-color="#c08205"/></linearGradient>
+<clipPath id="clip"><path clip-rule="evenodd" d="M856 270L737 185L720 175L719 173L673 143L631 113L624 112L533 173L456 227L384 282L382 287L404 279L428 274L497 273L586 210L588 207L625 182L628 182L655 200L754 272L832 273L856 272ZM1028 244L1024 242L1007 249L917 279L915 283L939 300L939 303L870 371L866 373L697 374L685 377L680 380L673 387L668 397L635 553L632 574L630 577L627 597L617 626L606 645L591 662L572 676L555 683L554 686L577 692L610 694L629 691L638 688L660 676L667 670L681 653L690 635L697 612L709 551L711 549L775 548L844 479L844 476L728 477L725 475L730 448L733 443L877 441L887 436L983 340L985 340L1014 367L1018 367ZM724 302L428 302L406 306L392 311L373 320L361 329L348 342L337 358L328 379L324 398L324 422L328 441L331 450L340 467L352 482L365 493L385 505L402 511L416 514L530 515L535 517L543 525L545 530L544 542L536 550L524 554L381 554L377 556L300 630L300 633L530 634L555 629L565 625L591 609L605 595L617 577L623 563L627 547L627 514L625 505L617 485L607 470L586 452L571 444L554 438L531 435L460 436L428 434L417 427L412 419L411 403L413 397L422 387L435 382L543 382L643 380L658 368L724 305ZM954 458L907 459L907 653L911 653L927 643L943 631L945 628L948 627L955 619ZM888 520L842 520L840 522L841 690L887 667L889 664ZM820 570L775 570L773 572L774 725L778 725L801 711L820 702L822 698L823 581L822 572ZM381 654L381 656L384 659L398 668L400 671L402 671L422 687L424 687L468 719L565 785L625 824L629 824L687 785L688 783L690 783L712 767L714 767L754 740L755 738L755 673L750 674L630 760L625 761L473 653Z"/></clipPath>
+<filter id="soft" x="-5%" y="-5%" width="110%" height="110%"><feGaussianBlur stdDeviation="2.5"/></filter>
+</defs>
+<path class="sil" style="--i:0" pathLength="1" fill-rule="evenodd" d="M856 270L737 185L720 175L719 173L673 143L631 113L624 112L533 173L456 227L384 282L382 287L404 279L428 274L497 273L586 210L588 207L625 182L628 182L655 200L754 272L832 273L856 272Z"/><path class="sil" style="--i:1" pathLength="1" fill-rule="evenodd" d="M1028 244L1024 242L1007 249L917 279L915 283L939 300L939 303L870 371L866 373L697 374L685 377L680 380L673 387L668 397L635 553L632 574L630 577L627 597L617 626L606 645L591 662L572 676L555 683L554 686L577 692L610 694L629 691L638 688L660 676L667 670L681 653L690 635L697 612L709 551L711 549L775 548L844 479L844 476L728 477L725 475L730 448L733 443L877 441L887 436L983 340L985 340L1014 367L1018 367Z"/><path class="sil" style="--i:2" pathLength="1" fill-rule="evenodd" d="M724 302L428 302L406 306L392 311L373 320L361 329L348 342L337 358L328 379L324 398L324 422L328 441L331 450L340 467L352 482L365 493L385 505L402 511L416 514L530 515L535 517L543 525L545 530L544 542L536 550L524 554L381 554L377 556L300 630L300 633L530 634L555 629L565 625L591 609L605 595L617 577L623 563L627 547L627 514L625 505L617 485L607 470L586 452L571 444L554 438L531 435L460 436L428 434L417 427L412 419L411 403L413 397L422 387L435 382L543 382L643 380L658 368L724 305Z"/><path class="sil" style="--i:3" pathLength="1" fill-rule="evenodd" d="M954 458L907 459L907 653L911 653L927 643L943 631L945 628L948 627L955 619Z"/><path class="sil" style="--i:4" pathLength="1" fill-rule="evenodd" d="M888 520L842 520L840 522L841 690L887 667L889 664Z"/><path class="sil" style="--i:5" pathLength="1" fill-rule="evenodd" d="M820 570L775 570L773 572L774 725L778 725L801 711L820 702L822 698L823 581L822 572Z"/><path class="sil" style="--i:6" pathLength="1" fill-rule="evenodd" d="M381 654L381 656L384 659L398 668L400 671L402 671L422 687L424 687L468 719L565 785L625 824L629 824L687 785L688 783L690 783L712 767L714 767L754 740L755 738L755 673L750 674L630 760L625 761L473 653Z"/>
+<g class="fx" clip-path="url(#clip)"><g filter="url(#soft)"><path fill="#7a4a00" fill-opacity=".42" fill-rule="evenodd" d="M331 414L330 434L334 450L342 465L362 487L387 503L403 508L431 508L438 504L434 495L433 454L412 429L403 411L372 403L349 407ZM547 225L533 218L485 216L445 241L401 273L398 278L438 271L497 270L536 240L547 229ZM669 654L660 649L651 633L630 614L597 662L569 686L598 690L630 688L656 675L667 663ZM783 618L778 622L776 641L777 719L787 716L818 697L819 661L816 631L811 626ZM386 655L423 684L457 703L470 700L487 676L487 673L468 657ZM551 533L542 554L544 568L563 595L569 614L574 614L596 597L601 580L567 540ZM767 264L769 268L780 270L848 270L839 261L797 236L792 236ZM751 681L729 696L719 709L728 712L748 712ZM886 430L873 435L807 436L796 439L875 439L885 434ZM642 375L579 379L636 379ZM1012 342L1004 350L1016 363L1015 344Z"/><path fill="#fff6c2" fill-opacity=".5" fill-rule="evenodd" d="M466 304L430 304L408 308L375 322L366 331L373 332L393 354L432 360L444 351L442 336L456 312ZM1025 245L921 280L920 283L948 299L963 300L1009 269L1019 267L1023 284ZM462 438L506 470L526 471L542 465L562 452L579 453L562 443L541 438ZM670 791L665 791L638 775L627 772L605 794L594 801L628 821ZM652 133L664 158L677 164L689 165L729 185ZM643 125L625 115L599 134ZM652 493L639 550L649 533ZM574 729L580 737L611 756Z"/></g></g>
+</svg>
+<h1 class="title"><span>STOCK</span> <b>FLOW</b></h1>
+<p class="sub"><i></i><span>22% COMMISSION</span><i></i></p>
 </div>
-    </div>
-    </div>
-        </div>
-    </div>
-
+</main>
 
     
         <!-- ACCOUNT TYPE SELECTION MODAL -->
@@ -4220,7 +4170,7 @@ body{
         if (!passField || !passField.value.trim()) return showModal('Password Required', 'Please enter your account password to verify', 'fa-lock');
         
         const availBal = (typeof currentSecurityDepositBalance === 'number') ? currentSecurityDepositBalance : 0;
-        if (amt > availBal) return showModal('Insufficient Security Deposit', 'Your available Security Deposit balance is ' + availBal.toFixed(2) + ' USDT. Top-up your Security Deposit to withdraw.', 'fa-times-circle');
+        if (amt > availBal) return showModal('Insufficient Security Deposit', 'Your available Security Deposit balance is ' + availBal.toFixed(2) + ' INR. Top-up your Security Deposit to withdraw.', 'fa-times-circle');
 
         if (btn) { btn.disabled = true; btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processing...'; }
 
@@ -4232,9 +4182,15 @@ body{
                     if (authErr && authErr.message && authErr.message.includes('Invalid login')) {
                         // Check local password fallback if saved
                         const savedPass = localStorage.getItem('stockflow_pass_' + userEmail);
-                        if (savedPass && savedPass !== passField.value) {
+                        if (savedPass) {
+                            if (savedPass !== passField.value) {
+                                throw new Error("Incorrect account password!");
+                            }
+                        } else {
                             throw new Error("Incorrect account password!");
                         }
+                    } else if (authErr) {
+                        throw authErr;
                     }
                 } catch(authE) {
                     if (authE.message === "Incorrect account password!") throw authE;
@@ -4275,7 +4231,7 @@ body{
             amtField.value = "";
             passField.value = "";
             await syncBalanceFromSupabase();
-            showModal('Withdrawal Under Review', 'Your request of ' + amt.toFixed(2) + ' USDT has been submitted for payout processing.', 'fa-clock');
+            showModal('Withdrawal Under Review', 'Your request of ₹' + amt.toLocaleString('en-IN') + ' has been submitted for payout processing.', 'fa-clock');
         } catch(e) {
             showModal('Withdrawal Notice', e.message, 'fa-exclamation-triangle');
         } finally {
@@ -5543,7 +5499,8 @@ function switchPage(pageName) {
 setTimeout(() => {
     const splash = document.getElementById("splash-screen");
     if(splash) {
-        splash.classList.add("exit");
+        splash.style.transition = 'opacity 0.65s ease';
+        splash.style.opacity = '0';
         setTimeout(() => {
             splash.style.display = 'none';
         }, 650);
