@@ -56,7 +56,11 @@
     </script>
     <style>
         * { -webkit-tap-highlight-color: transparent; }
-        body { background-color: #F8FAFC; color: #172033; padding-bottom: 85px; overflow-x: hidden; }
+        body {
+            -webkit-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            -webkit-touch-callout: none; background-color: #F8FAFC; color: #172033; padding-bottom: 85px; overflow-x: hidden; }
         
         ::-webkit-scrollbar { display: none; width: 0px; height: 0px; background: transparent; }
         html, body, * { scrollbar-width: none; -ms-overflow-style: none; }
@@ -126,7 +130,11 @@
         
         /* Modern Inputs */
         .modern-input { width: 100%; background: #f8fafc; border: 1px solid #cbd5e1; color: #1e293b; font-size: 15px; border-radius: 8px; padding: 14px; outline: none; transition: border-color 0.2s; }
-        .modern-input:focus { border-color: #F4C928; background: #ffffff; box-shadow: 0 0 0 2px rgba(244, 201, 40, 0.2); }
+        .modern-input, textarea {
+            -webkit-user-select: auto !important;
+            user-select: auto !important;
+        }
+        input:focus { border-color: #F4C928; background: #ffffff; box-shadow: 0 0 0 2px rgba(244, 201, 40, 0.2); }
         
         /* Navigation Styles */
         .nav-item { color: #94a3b8; }
@@ -527,6 +535,10 @@
 
         /* Overscroll fix to prevent stretching/bouncing globally */
         html, body {
+            -webkit-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            -webkit-touch-callout: none;
             overscroll-behavior-y: none !important;
             overscroll-behavior-x: none !important;
             -webkit-overflow-scrolling: touch;
@@ -4577,7 +4589,25 @@
         }
     }
 
+    let isPoppingState = false;
+    window.addEventListener('popstate', function(e) {
+        if (e.state && e.state.page) {
+            isPoppingState = true;
+            switchPage(e.state.page);
+        } else {
+            // Default to home if no state
+            isPoppingState = true;
+            switchPage('home');
+        }
+    });
+
     function switchPage(pageName) {
+        if (!isPoppingState) {
+            // Push state only if it's a new navigation, not a back button press
+            history.pushState({ page: pageName }, '', '#' + pageName);
+        }
+        isPoppingState = false;
+
         document.querySelectorAll('.page-section').forEach(el => el.classList.remove('active'));
         document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
         
@@ -4828,6 +4858,7 @@
         }
     }
     window.onload = function() {
+        history.replaceState({ page: 'home' }, '', '#home');
         initDemoMarketLogic();
         initSupabase();
         if(localStorage.getItem('stockflow_logged_in') !== 'true') {
