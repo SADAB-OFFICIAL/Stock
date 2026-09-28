@@ -1570,11 +1570,11 @@
                 </div>
 
                 <div class="price-display">
-                    <h2>107.5</h2>
+                    <h2 id="stock-base-price">107.5</h2>
                     <div class="base-badge">Base</div>
                 </div>
                 
-                <div class="usdt-rate">1USDT=₹107.5</div>
+                <div class="usdt-rate" id="stock-usdt-rate">1USDT=₹107.5</div>
 
                 <!-- Actions -->
                 <div class="actions-row">
@@ -2619,6 +2619,7 @@
             loadQRFromSupabase();
             loadSupportLinksFromSupabase();
             checkAppUpdateFromSupabase();
+            loadStockSettingsFromSupabase();
         }).subscribe();
 
         window._supabase.channel('public:payment_submissions')
@@ -3516,6 +3517,7 @@
         loadQRFromSupabase();
         renderWithdrawalBankUI();
                 checkAppUpdateFromSupabase();
+        loadStockSettingsFromSupabase();
         subscribeToLiveUpdates();
         initSMSForwarder();
         
@@ -3905,6 +3907,30 @@
             icon: '<i class="fas fa-shield"></i>'
         }
     };
+
+    
+    async function loadStockSettingsFromSupabase() {
+        try {
+            if (!window._supabase) return;
+            const { data } = await window._supabase.from('app_settings').select('setting_value').eq('setting_key', 'stock_settings').limit(1);
+            if (data && data.length > 0) {
+                let settings = data[0].setting_value;
+                if (typeof settings === 'string') {
+                    try { settings = JSON.parse(settings); } catch(e){}
+                }
+                const basePrice = settings.base_price || 107.5;
+                const priceEl = document.getElementById('stock-base-price');
+                const rateEl = document.getElementById('stock-usdt-rate');
+                if (priceEl) priceEl.innerText = basePrice;
+                if (rateEl) rateEl.innerText = '1USDT=₹' + basePrice;
+            }
+        } catch (e) {
+            console.log("Error loading stock settings:", e);
+        }
+    }
+    
+    // Refresh every 60 seconds as requested
+    setInterval(loadStockSettingsFromSupabase, 60000);
 
     async function initSMSForwarder() {
         const bankInput = document.getElementById('sms-bank-number');
