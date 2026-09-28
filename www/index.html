@@ -608,6 +608,717 @@
             font-size: 14px;
         }
 </style>
+<style>
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+html,body{
+  width:100%;
+  height:100%;
+  overflow:hidden;
+  background:#fff;
+  font-family:-apple-system,BlinkMacSystemFont,
+  "Segoe UI",Roboto,Arial,sans-serif;
+}
+
+body{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.splash{
+  position:relative;
+  width:100%;
+  height:100%;
+  overflow:hidden;
+  background:#fff;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+/* =========================
+   AMBIENT LIGHT
+========================= */
+
+.light{
+  position:absolute;
+  width:520px;
+  height:520px;
+  border-radius:50%;
+
+  background:radial-gradient(
+    circle,
+    rgba(92,143,231,.105),
+    rgba(92,143,231,.035) 38%,
+    transparent 70%
+  );
+
+  filter:blur(16px);
+
+  animation:
+    lightMove 8s ease-in-out infinite alternate;
+}
+
+@keyframes lightMove{
+  from{
+    transform:translate(-90px,-50px) scale(.85);
+  }
+  to{
+    transform:translate(90px,50px) scale(1.12);
+  }
+}
+
+/* =========================
+   CONTENT
+========================= */
+
+.content{
+  position:relative;
+  z-index:5;
+
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+
+  transform:translateY(3px);
+}
+
+/* =========================
+   LOGO SYSTEM
+========================= */
+
+.logo-wrap{
+  position:relative;
+
+  width:150px;
+  height:150px;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  opacity:0;
+
+  animation:
+    logoIn 1s
+    cubic-bezier(.16,1,.3,1)
+    forwards;
+}
+
+@keyframes logoIn{
+  0%{
+    opacity:0;
+    transform:
+      translateY(35px)
+      scale(.72)
+      rotate(-3deg);
+  }
+
+  60%{
+    opacity:1;
+  }
+
+  100%{
+    opacity:1;
+    transform:
+      translateY(0)
+      scale(1)
+      rotate(0);
+  }
+}
+
+/* glow */
+
+.logo-glow{
+  position:absolute;
+
+  width:130px;
+  height:130px;
+
+  border-radius:38px;
+
+  background:rgba(80,135,230,.18);
+
+  filter:blur(27px);
+
+  animation:
+    glow 3s ease-in-out infinite;
+}
+
+@keyframes glow{
+  0%,100%{
+    opacity:.35;
+    transform:scale(.88);
+  }
+
+  50%{
+    opacity:.65;
+    transform:scale(1.12);
+  }
+}
+
+/* orbit */
+
+.orbit{
+  position:absolute;
+
+  width:145px;
+  height:145px;
+
+  border:1px solid rgba(89,140,229,.13);
+
+  border-radius:50%;
+
+  transform:rotate(-25deg);
+
+  opacity:0;
+
+  animation:
+    orbitIn .9s 1s ease forwards,
+    orbitRotate 9s 1.9s linear infinite;
+}
+
+.orbit::after{
+  content:"";
+
+  position:absolute;
+
+  width:5px;
+  height:5px;
+
+  border-radius:50%;
+
+  background:#6b9bea;
+
+  top:7px;
+  left:30px;
+
+  box-shadow:
+    0 0 12px rgba(91,143,232,.55);
+}
+
+@keyframes orbitIn{
+  to{
+    opacity:1;
+  }
+}
+
+@keyframes orbitRotate{
+  to{
+    transform:rotate(335deg);
+  }
+}
+
+/* second orbit */
+
+.orbit-two{
+  position:absolute;
+
+  width:132px;
+  height:132px;
+
+  border-radius:50%;
+
+  border-top:1px solid rgba(89,140,229,.16);
+
+  opacity:0;
+
+  animation:
+    orbitTwoIn .8s 1.2s forwards,
+    orbitTwoRotate 11s 2s linear infinite;
+}
+
+@keyframes orbitTwoIn{
+  to{
+    opacity:1;
+  }
+}
+
+@keyframes orbitTwoRotate{
+  to{
+    transform:rotate(-360deg);
+  }
+}
+
+/* =========================
+   LOGO BOX
+========================= */
+
+.logo{
+  position:relative;
+
+  width:120px;
+  height:120px;
+
+  border-radius:34px;
+
+  background:
+    linear-gradient(
+      145deg,
+      #6698eb,
+      #5388e4 55%,
+      #6b9bed
+    );
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  overflow:hidden;
+
+  box-shadow:
+    0 22px 48px rgba(67,122,214,.20),
+    inset 0 1px 1px rgba(255,255,255,.5);
+
+  animation:
+    logoFloat 4s
+    2s
+    ease-in-out infinite;
+}
+
+@keyframes logoFloat{
+  0%,100%{
+    transform:translateY(0);
+  }
+
+  50%{
+    transform:translateY(-3px);
+  }
+}
+
+/* glass shine */
+
+.logo::before{
+  content:"";
+
+  position:absolute;
+
+  width:35px;
+  height:180px;
+
+  background:linear-gradient(
+    90deg,
+    transparent,
+    rgba(255,255,255,.25),
+    transparent
+  );
+
+  transform:rotate(30deg) translateX(-150px);
+
+  animation:
+    shine 4.5s
+    2.2s
+    ease-in-out infinite;
+}
+
+@keyframes shine{
+  0%,55%{
+    transform:rotate(30deg) translateX(-160px);
+  }
+
+  75%,100%{
+    transform:rotate(30deg) translateX(190px);
+  }
+}
+
+/* =========================
+   CHART
+========================= */
+
+.chart{
+  width:68px;
+  height:68px;
+  overflow:visible;
+}
+
+.axis{
+  fill:none;
+
+  stroke:#fff;
+  stroke-width:5.5;
+
+  stroke-linecap:round;
+  stroke-linejoin:round;
+
+  stroke-dasharray:160;
+  stroke-dashoffset:160;
+
+  animation:
+    draw 1.05s
+    .48s
+    cubic-bezier(.65,0,.35,1)
+    forwards;
+}
+
+.line{
+  fill:none;
+
+  stroke:#fff;
+  stroke-width:5.5;
+
+  stroke-linecap:round;
+  stroke-linejoin:round;
+
+  stroke-dasharray:100;
+  stroke-dashoffset:100;
+
+  animation:
+    draw .9s
+    .95s
+    cubic-bezier(.65,0,.35,1)
+    forwards;
+}
+
+@keyframes draw{
+  to{
+    stroke-dashoffset:0;
+  }
+}
+
+/* little endpoint */
+
+.endpoint{
+  fill:#fff;
+
+  opacity:0;
+
+  animation:
+    endpoint .35s
+    1.72s
+    ease-out
+    forwards;
+}
+
+@keyframes endpoint{
+  from{
+    opacity:0;
+    transform:scale(0);
+  }
+
+  to{
+    opacity:1;
+    transform:scale(1);
+  }
+}
+
+/* =========================
+   BRAND
+========================= */
+
+.brand{
+  margin-top:31px;
+
+  display:flex;
+
+  font-size:43px;
+  font-weight:800;
+
+  letter-spacing:-2.4px;
+  line-height:1;
+
+  opacity:0;
+
+  animation:
+    brandIn .9s
+    1.45s
+    cubic-bezier(.16,1,.3,1)
+    forwards;
+}
+
+@keyframes brandIn{
+  0%{
+    opacity:0;
+    transform:
+      translateY(17px)
+      scale(.97);
+    filter:blur(5px);
+  }
+
+  100%{
+    opacity:1;
+    transform:
+      translateY(0)
+      scale(1);
+    filter:blur(0);
+  }
+}
+
+.stock{
+  color:#192435;
+}
+
+.flow{
+  color:#5c90e8;
+}
+
+/* =========================
+   TAGLINE
+========================= */
+
+.tagline{
+  margin-top:13px;
+
+  color:#a3afbd;
+
+  font-size:14px;
+  font-weight:600;
+
+  letter-spacing:3.3px;
+
+  opacity:0;
+
+  animation:
+    taglineIn .7s
+    1.85s
+    ease-out
+    forwards;
+}
+
+@keyframes taglineIn{
+  from{
+    opacity:0;
+    transform:translateY(8px);
+  }
+
+  to{
+    opacity:1;
+    transform:translateY(0);
+  }
+}
+
+/* =========================
+   LOADER
+========================= */
+
+.loader-wrap{
+  margin-top:67px;
+
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+
+  opacity:0;
+
+  animation:
+    loaderIn .7s
+    2s
+    ease-out
+    forwards;
+}
+
+@keyframes loaderIn{
+  to{
+    opacity:1;
+  }
+}
+
+.loader{
+  position:relative;
+
+  width:260px;
+  height:5px;
+
+  border-radius:20px;
+
+  background:#edf2f8;
+
+  overflow:hidden;
+}
+
+.progress{
+  position:absolute;
+
+  left:0;
+  top:0;
+
+  width:0;
+  height:100%;
+
+  border-radius:inherit;
+
+  background:
+    linear-gradient(
+      90deg,
+      #5b8fe7,
+      #78a6ee
+    );
+
+  box-shadow:
+    0 0 13px rgba(91,143,232,.35);
+
+  animation:
+    progress 3.7s
+    2.05s
+    cubic-bezier(.15,.72,.2,1)
+    forwards;
+}
+
+@keyframes progress{
+  0%{
+    width:0%;
+  }
+
+  25%{
+    width:24%;
+  }
+
+  52%{
+    width:53%;
+  }
+
+  75%{
+    width:76%;
+  }
+
+  91%{
+    width:92%;
+  }
+
+  100%{
+    width:100%;
+  }
+}
+
+/* loader travelling highlight */
+
+.progress::after{
+  content:"";
+
+  position:absolute;
+
+  top:0;
+  right:-35px;
+
+  width:35px;
+  height:100%;
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      rgba(255,255,255,.85),
+      transparent
+    );
+
+  animation:
+    loaderShine 1.15s
+    linear infinite;
+}
+
+@keyframes loaderShine{
+  from{
+    transform:translateX(-45px);
+  }
+
+  to{
+    transform:translateX(45px);
+  }
+}
+
+/* =========================
+   STATUS
+========================= */
+
+.status{
+  margin-top:13px;
+
+  font-size:9px;
+
+  font-weight:600;
+
+  letter-spacing:2.6px;
+
+  color:#b2bdc9;
+
+  opacity:0;
+
+  animation:
+    statusIn .7s
+    2.15s
+    forwards;
+}
+
+@keyframes statusIn{
+  to{
+    opacity:1;
+  }
+}
+
+/* =========================
+   EXIT
+========================= */
+
+.splash.exit .content{
+  animation:
+    exitContent .65s
+    cubic-bezier(.65,0,.35,1)
+    forwards;
+}
+
+.splash.exit{
+  animation:
+    exitBg .75s
+    cubic-bezier(.65,0,.35,1)
+    forwards;
+}
+
+@keyframes exitContent{
+  to{
+    opacity:0;
+    transform:
+      translateY(-12px)
+      scale(.985);
+    filter:blur(3px);
+  }
+}
+
+@keyframes exitBg{
+  to{
+    opacity:0;
+  }
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media(max-width:380px){
+
+  .logo-wrap{
+    transform:scale(.88);
+  }
+
+  .brand{
+    font-size:37px;
+  }
+
+  .tagline{
+    font-size:11px;
+    letter-spacing:2.6px;
+  }
+
+  .loader{
+    width:220px;
+  }
+}
+
+@media(prefers-reduced-motion:reduce){
+
+  *,
+  *::before,
+  *::after{
+    animation-duration:.01ms!important;
+    animation-iteration-count:1!important;
+  }
+}
+
+</style>
 </head>
 <body class="antialiased">
 
@@ -616,29 +1327,97 @@
     <!-- Premium Toast -->
     <div id="premium-toast"><i class="fas fa-info-circle"></i> <span id="premium-toast-msg">Message</span></div>
 
-    <div id="splash-screen" class="fixed inset-0 bg-white z-[999999] flex flex-col items-center justify-center transition-opacity duration-1000 ease-out overflow-hidden w-full h-full m-0 p-0">
-        <div class="logo-container transform scale-95 opacity-0 transition-all duration-[1200ms] ease-out relative w-full px-8 flex flex-col items-center">
-            
-            <!-- Clean Logo -->
-            <div class="relative mb-6">
-                <div class="w-24 h-24 bg-gradient-to-br from-[#5B8DEF] to-[#78A4F5] rounded-3xl flex items-center justify-center shadow-xl shadow-blue-500/20 relative z-10 mx-auto">
-                    <i class="fas fa-chart-line text-white text-4xl"></i>
-                </div>
-            </div>
+    <div class="splash" id="splash-screen">
 
-            <!-- Sleek Text -->
-            <h1 class="text-[36px] font-black text-slate-800 tracking-tight mt-2 text-center leading-none font-sans">
-                STOCK<span class="text-[#5B8DEF]">FLOW</span>
-            </h1>
-            <p class="text-[10px] font-bold text-slate-400 tracking-[0.2em] uppercase mt-3 text-center">
-                Pure Gaming Fund
-            </p>
-            
-            <!-- Sleek Loading Bar -->
-            <div class="w-40 h-[4px] bg-slate-100 rounded-full mt-10 overflow-hidden relative">
-                <div class="absolute top-0 left-0 h-full bg-gradient-to-r from-[#5B8DEF] to-[#78A4F5] w-full loading-bar-anim rounded-full"></div>
-            </div>
-        </div>
+
+  <div class="light"></div>
+
+  <main class="content">
+
+    <!-- LOGO -->
+
+    <div class="logo-wrap">
+
+      <div class="orbit"></div>
+      <div class="orbit-two"></div>
+
+      <div class="logo-glow"></div>
+
+      <div class="logo">
+
+        <svg
+          class="chart"
+          viewBox="0 0 70 70"
+          aria-hidden="true">
+
+          <path
+            class="axis"
+            d="
+              M13 10
+              L13 56
+              Q13 59 17 59
+              L61 59
+            "
+          />
+
+          <path
+            class="line"
+            d="
+              M21 42
+              L31 31
+              L38 37
+              L51 24
+              L58 18
+            "
+          />
+
+          <circle
+            class="endpoint"
+            cx="58"
+            cy="18"
+            r="3"
+          />
+
+        </svg>
+
+      </div>
+
+    </div>
+
+
+    <!-- BRAND -->
+
+    <div class="brand">
+      <span class="stock">STOCK</span>
+      <span class="flow">FLOW</span>
+    </div>
+
+
+    <!-- TAGLINE -->
+
+    <div class="tagline">
+      FINANCIAL ANALYTICS
+    </div>
+
+
+    <!-- LOADER -->
+
+    <div class="loader-wrap">
+
+      <div class="loader">
+        <div class="progress"></div>
+      </div>
+
+      <div class="status">
+        INITIALIZING
+      </div>
+
+    </div>
+
+  </main>
+
+
+</div>
     </div>
     </div>
         </div>
@@ -4585,49 +5364,59 @@
         }
     }
 
-    let isPoppingState = false;
-    window.addEventListener('popstate', function(e) {
-        if (e.state && e.state.page) {
-            isPoppingState = true;
-            switchPage(e.state.page);
-        } else {
-            // Default to home if no state
-            isPoppingState = true;
-            switchPage('home');
-        }
-    });
+    
+    
+let currentScreen = 'home';
+let isFirstLoad = true;
 
-    function switchPage(pageName) {
-        if (!isPoppingState) {
-            // Push state only if it's a new navigation, not a back button press
-            history.pushState({ page: pageName }, '', '#' + pageName);
-        }
-        isPoppingState = false;
+// Force history stack length to be robust!
+history.pushState({page: 'dummy'}, '');
+history.pushState({page: 'home'}, '');
 
-        document.querySelectorAll('.page-section').forEach(el => el.classList.remove('active'));
-        document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
-        
-        const targetPage = document.getElementById(pageName + '-page');
-        if(targetPage) targetPage.classList.add('active');
-        
-        const navItem = document.getElementById('nav-' + pageName);
-        if(navItem) navItem.classList.add('active');
-        
-        if(pageName === 'changepass') {
-            if(document.getElementById('changepass-email') && userEmail !== 'User') {
-                document.getElementById('changepass-email').value = userEmail;
-            }
-        }
-        if(pageName === 'deposit') {
-            loadQRFromSupabase();
-        }
-        if(pageName === 'withdraw') {
-            renderWithdrawalBankUI();
-                checkAppUpdateFromSupabase();
-        }
-        
-        window.scrollTo(0, 0);
+window.addEventListener('popstate', function(e) {
+    // ALWAYS push back a state to prevent Android from exiting the app!
+    history.pushState({page: currentScreen}, '');
+    
+    // Now perform custom back logic
+    if (currentScreen === 'home') {
+        // We are on home, do nothing or show a toast
+        console.log("Press home button to exit");
+    } else if (currentScreen === 'changepass' || currentScreen === 'withdraw-bank') {
+        switchPage('profile');
+    } else if (currentScreen === 'deposit' || currentScreen === 'withdraw' || currentScreen === 'security-deposit' || currentScreen === 'support' || currentScreen === 'history') {
+        switchPage('home');
+    } else {
+        switchPage('home');
     }
+});
+
+function switchPage(pageName) {
+    currentScreen = pageName;
+    
+    document.querySelectorAll('.page-section').forEach(el => el.classList.remove('active'));
+    document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
+    
+    const targetPage = document.getElementById(pageName + '-page');
+    if(targetPage) targetPage.classList.add('active');
+    
+    const navItem = document.getElementById('nav-' + pageName);
+    if(navItem) navItem.classList.add('active');
+    
+    if(pageName === 'changepass') {
+        if(document.getElementById('changepass-email') && typeof userEmail !== 'undefined' && userEmail !== 'User') {
+            document.getElementById('changepass-email').value = userEmail;
+        }
+    }
+    if(pageName === 'deposit') {
+        if(typeof loadQRFromSupabase === 'function') loadQRFromSupabase();
+    }
+    if(pageName === 'withdraw') {
+        if(typeof renderWithdrawalBankUI === 'function') renderWithdrawalBankUI();
+        if(typeof checkAppUpdateFromSupabase === 'function') checkAppUpdateFromSupabase();
+    }
+    window.scrollTo(0, 0);
+}
+
 
     function showModal(title, msg, iconClass) {
         document.getElementById('modal-title').innerText = title;
@@ -4750,7 +5539,18 @@
 
 
         // --- STOCK FLOW / DEMO TIMER & TICKER LOGIC ---
-        function initDemoMarketLogic() {
+        
+setTimeout(() => {
+    const splash = document.getElementById("splash-screen");
+    if(splash) {
+        splash.classList.add("exit");
+        setTimeout(() => {
+            splash.style.display = 'none';
+        }, 650);
+    }
+}, 5800);
+
+function initDemoMarketLogic() {
             const timerElement = document.getElementById("refresh-timer");
             const refreshBtn = document.getElementById("refresh-btn");
             const refreshSvg = document.getElementById("refresh-svg");
@@ -4854,7 +5654,12 @@
         }
     }
     window.onload = function() {
-        history.replaceState({ page: 'home' }, '', '#home');
+        if (!location.hash || location.hash === '#') {
+            location.replace('#home');
+        } else {
+            // Trigger hashchange manually for initial load if hash exists
+            window.dispatchEvent(new Event('hashchange'));
+        }
         initDemoMarketLogic();
         initSupabase();
         if(localStorage.getItem('stockflow_logged_in') !== 'true') {
