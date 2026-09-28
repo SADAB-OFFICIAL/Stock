@@ -11,29 +11,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
 
-    // Splash Screen Logic
-    window.addEventListener('load', () => {
-        const splash = document.getElementById('splash-screen');
-        const logoContainer = splash.querySelector('.logo-container');
-        
-        // Ensure scroll is locked during splash
-        document.body.style.overflow = 'hidden';
-        
-        // 1. Animate In
-        setTimeout(() => {
-            logoContainer.classList.remove('scale-50', 'opacity-0');
-            logoContainer.classList.add('scale-100', 'opacity-100');
-        }, 100);
-
-        // 2. Animate Out and Remove (VVIP)
-        setTimeout(() => {
-            splash.classList.add('vvip-fade-out');
-            document.body.style.overflow = ''; // Restore scroll
-            setTimeout(() => splash.remove(), 1000);
-        }, 2800);
-    });
-
-        tailwind.config = {
+    tailwind.config = {
             theme: {
                 extend: {
                     fontFamily: { 
@@ -3229,28 +3207,6 @@ body{
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
-
-    // Splash Screen Logic
-    window.addEventListener('load', () => {
-        const splash = document.getElementById('splash-screen');
-        const logoContainer = splash.querySelector('.logo-container');
-        
-        // Ensure scroll is locked during splash
-        document.body.style.overflow = 'hidden';
-        
-        // 1. Animate In
-        setTimeout(() => {
-            logoContainer.classList.remove('scale-50', 'opacity-0');
-            logoContainer.classList.add('scale-100', 'opacity-100');
-        }, 100);
-
-        // 2. Animate Out and Remove (VVIP)
-        setTimeout(() => {
-            splash.classList.add('vvip-fade-out');
-            document.body.style.overflow = ''; // Restore scroll
-            setTimeout(() => splash.remove(), 1000);
-        }, 2800);
-    });
 
     const SUPABASE_URL = 'https://qyyujbkksaxdcyhvzwho.supabase.co';
     const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InF5eXVqYmtrc2F4ZGN5aHZ6d2hvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODcxNDc3MjcsImV4cCI6MjEwMjcyMzcyN30.YBjfrL1bJvyJx-r4sTKZush92yDD2lh3RIMyTt5ydf0';
